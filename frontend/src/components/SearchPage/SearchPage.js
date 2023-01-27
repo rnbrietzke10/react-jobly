@@ -1,0 +1,1 @@
+/* Reneders search input and coresponding jobs or companies */

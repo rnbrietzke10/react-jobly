@@ -1,15 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../src/Home';
-
-function JoblyRoutes() {
+import Home from './components/Home';
+const JoblyRoutes = () => {
   return (
-    <Route>
+    <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Home />} />
       <Route path="/signup" element={<Home />} />
-    </Route>
+    </Routes>
   );
-}
+};
 
 export default JoblyRoutes;

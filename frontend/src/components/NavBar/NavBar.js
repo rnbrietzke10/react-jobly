@@ -4,10 +4,10 @@ const NavBar = () => {
   return (
     <div>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>Comapnies</li>
+        <li>Jobs</li>
+        <li>Signup</li>
+        <li>Logout</li>
       </ul>
     </div>
   );

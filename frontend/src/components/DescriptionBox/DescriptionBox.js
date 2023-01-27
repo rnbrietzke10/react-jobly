@@ -1,1 +1,0 @@
-/* Renders either company or job description for search page */

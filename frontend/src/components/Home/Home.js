@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './Home.css';
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const firstName = 'Sharon';

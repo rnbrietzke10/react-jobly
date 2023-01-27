@@ -1,5 +1,6 @@
 /* Reneders search input and coresponding jobs or companies */
 import React, { useState } from 'react';
+import './SearchPage.css';
 
 const SearchPage = () => {
   const types = ['Companies', 'Jobs'];
@@ -7,10 +8,13 @@ const SearchPage = () => {
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
-  console.log(searchTerm);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // send request to api to get filtered jobs or companies
+  };
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="search"></label>
         <input
           id="search"

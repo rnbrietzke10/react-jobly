@@ -1,9 +1,25 @@
 import React from 'react';
 import './JobsList.css';
+import Job from '../job/Job';
 const JobsList = () => {
+  const jobs = [
+    {
+      title: 'Manager',
+      companyName: 'Apple',
+      salary: '$56,000',
+      equity: 0.1,
+    },
+    {
+      title: 'Assistant Manager',
+      companyName: 'Apple',
+      salary: '$36,000',
+    },
+  ];
   return (
     <div>
-      <div>Jobs List</div>
+      {jobs.map((job) => (
+        <Job job={job} />
+      ))}
     </div>
   );
 };

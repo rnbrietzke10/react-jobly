@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const SearchBox = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchBox = ({ items, setSearchResults }) => {
+  const handleSubmit = (e) => e.preventDefault();
+
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // send request to api to get filtered jobs or companies
+    if (!e.target.value) return setSearchResults(items);
+
+    const resultsArray = items.filter(
+      (item) =>
+        item.title.includes(e.target.value) ||
+        item.body.includes(e.target.value)
+    );
+
+    setSearchResults(resultsArray);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -16,12 +21,11 @@ const SearchBox = () => {
         id="search"
         type="text"
         name="search"
-        value={searchTerm}
-        placeholder={`Search for `}
+        placeholder={`Search`}
         className="form-input"
         onChange={handleChange}
       />
-      <button>Search</button>
+      <button className="btn btn__search">Search</button>
     </form>
   );
 };

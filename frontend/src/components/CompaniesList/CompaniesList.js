@@ -1,32 +1,16 @@
 import React, { useState } from 'react';
 import './CompaniesList.css';
+import SearchBox from '../SearchBox/SearchBox';
 
 const CompaniesList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // send request to api to get filtered jobs or companies
-  };
+  const [companies, setCompanies] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="search"></label>
-        <input
-          id="search"
-          type="text"
-          name="search"
-          value={searchTerm}
-          placeholder={`Search for `}
-          className="form-input"
-          onChange={handleChange}
-        />
-        <button>Search</button>
-      </form>
-      <main className="SearcPage-details">
-        {/* map over jobs or companies */}
+      <SearchBox setSearchTerm={setSearchResults} items={companies} />
+      <main className="Companylist">
+        {/* map over jobs or companies */ companies.map((company) => {})}
       </main>
     </div>
   );

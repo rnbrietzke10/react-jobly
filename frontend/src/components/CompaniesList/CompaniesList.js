@@ -1,9 +1,7 @@
-/* Reneders search input and coresponding jobs or companies */
 import React, { useState } from 'react';
-import './SearchPage.css';
+import './CompaniesList.css';
 
-const SearchPage = () => {
-  const types = ['Companies', 'Jobs'];
+const CompaniesList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -21,7 +19,7 @@ const SearchPage = () => {
           type="text"
           name="search"
           value={searchTerm}
-          placeholder={`Search for ${types[0]}`}
+          placeholder={`Search for `}
           className="form-input"
           onChange={handleChange}
         />
@@ -34,4 +32,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default CompaniesList;

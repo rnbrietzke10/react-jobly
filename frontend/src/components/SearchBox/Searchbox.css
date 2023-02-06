@@ -1,0 +1,10 @@
+.SearchBox__form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.btn__search {
+  color: #fff;
+  background-color: #a352ee;
+}

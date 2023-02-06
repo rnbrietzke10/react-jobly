@@ -1,6 +1,6 @@
 import React from 'react';
 import './JobsList.css';
-import Job from '../job/Job';
+import Job from '../Job/Job';
 const JobsList = () => {
   const jobs = [
     {

@@ -15,15 +15,15 @@ const CompaniesList = () => {
     getAllCompanies();
   }, []);
   return (
-    <div className="CompanyList-container outer-container">
+    <div className="CompanyList_wrapper outer-container">
       <SearchBox setSearchTerm={setSearchResults} items={companies} />
-      <main className="Companylist">
+      <div className="CompanyList_container">
         {
           /* map over jobs or companies */ companies.map((company) => {
             return <Company key={company.handle} company={company} />;
           })
         }
-      </main>
+      </div>
     </div>
   );
 };

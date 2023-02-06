@@ -1,10 +1,20 @@
-.Company_container {
-  height: 100px;
-  margin-bottom: 15px;
-  display: flex;
-}
-
 .Company_info {
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+.Company_info a {
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #8c28e9;
+  font-weight: 700;
+}
+
+.Company_info a:hover {
+  color: #7a05e7;
+}
+
+.Company_info__description {
+  width: 50%;
+  text-align: start;
 }

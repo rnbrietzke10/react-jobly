@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './form.css';
+import '../styles/forms.css';
 const LoginForm = () => {
   const INITIAL_STATE = {
     id: '',

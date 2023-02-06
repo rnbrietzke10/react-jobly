@@ -1,4 +1,5 @@
 import React from 'react';
+import './Searchbox.css';
 
 const SearchBox = ({ items, setSearchResults }) => {
   const handleSubmit = (e) => e.preventDefault();
@@ -15,7 +16,7 @@ const SearchBox = ({ items, setSearchResults }) => {
     setSearchResults(resultsArray);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="SearchBox__form">
       <label htmlFor="search"></label>
       <input
         id="search"

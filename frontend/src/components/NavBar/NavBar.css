@@ -1,0 +1,27 @@
+.nav {
+  background-color: #c595f3;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.nav__site-title {
+  font-size: 2rem;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav li.active {
+  background-color: #ac64f0;
+}
+
+.nav li:hover {
+  background-color: #a352ee;
+}

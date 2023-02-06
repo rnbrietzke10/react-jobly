@@ -1,0 +1,10 @@
+.Company_container {
+  height: 100px;
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.Company_info {
+  display: flex;
+  flex-direction: column;
+}

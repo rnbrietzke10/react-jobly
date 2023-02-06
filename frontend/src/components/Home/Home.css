@@ -1,9 +1,30 @@
-main {
+.Home__container {
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15vh;
-  height: calc(100vh - 50px); /* router view - navbar height */
-  overflow: scroll;
+  justify-content: center;
+  height: calc(100vh - 50px);
+}
+
+.Home__title {
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+.Home__container p {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.Home__btn-container {
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Home__btn {
+  font-size: 1.5rem;
+  padding: 10px 15px;
+  text-decoration: none;
 }

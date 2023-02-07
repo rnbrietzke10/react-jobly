@@ -17,6 +17,10 @@
   margin-bottom: 20px;
 }
 
+.Home__container {
+  font-size: 2rem;
+}
+
 .Home__btn-container {
   width: 300px;
   display: flex;

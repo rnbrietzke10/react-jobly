@@ -3,7 +3,7 @@ import './Job.css';
 
 const Job = ({ job }) => {
   return (
-    <div className="Job__container">
+    <div className="card__container">
       <div className="Job__description">
         <h3 className="Job__title">{job.title}</h3>
 

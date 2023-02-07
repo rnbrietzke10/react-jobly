@@ -13,11 +13,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const allDataEntered =
-      itemData.name &&
-      itemData.description &&
-      itemData.recipe &&
-      itemData.serve;
+    const allDataEntered = itemData.username && itemData.password;
     if (allDataEntered) {
       console.log(itemData);
 
@@ -49,6 +45,7 @@ const LoginForm = () => {
               id="password"
               type="password"
               name="password"
+              autoComplete="on"
               value={itemData.description}
               placeholder="Enter your password"
               className="form-input"

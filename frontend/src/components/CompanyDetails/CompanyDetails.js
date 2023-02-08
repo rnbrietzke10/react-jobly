@@ -15,11 +15,7 @@ const CompanyDetails = () => {
     }
     getData();
   }, [handle]);
-  console.log(companyData);
-  /**
- * handle: 'anderson-arias-morrow', name: 'Anderson, Arias and Morrow', description: "Somebody program how I. Face give away discussion view act inside. Your official relationship administration here.", jobs: (6) [{…}, {…}, {…}, {…}, {…}, {…}], logoUrl: "/logos/logo3.png" 
-numEmployees: 245
- */
+
   return (
     <div className="CompanyDetails__wrapper outer-container">
       <div className="CompanyDetails__container">
@@ -40,7 +36,7 @@ numEmployees: 245
       </div>
       <div className="CompanyDetails__jobs__container">
         {companyData.jobs
-          ? companyData.jobs.map((job) => <Job job={job} />)
+          ? companyData.jobs.map((job) => <Job key={job.id} job={job} />)
           : ''}
       </div>
     </div>

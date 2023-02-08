@@ -33,6 +33,12 @@ class JoblyApi {
   }
 
   // Individual API routes
+  /** Signup user */
+  static async signup(userData) {
+    let res = await this.request('/register', userData, 'post');
+    // Store user data in localStorage
+    console.log(res);
+  }
 
   /** Get all companies */
   static async getCompanies() {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import JoblyApi from '../../JoblyAPIHelper';
 import '../styles/forms.css';
 import './SignUpForm.css';
 
@@ -25,7 +26,7 @@ const SignUpFrom = () => {
       itemData.email &&
       itemData.password;
     if (allDataEntered) {
-      setItemData(INITIAL_STATE);
+      JoblyApi.signup(itemData);
     } else {
       alert('Please enter all data');
     }

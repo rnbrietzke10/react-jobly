@@ -75,7 +75,11 @@ class JoblyApi {
     return res.user;
   }
 
-  // obviously, you'll add a lot here ...
+  // Apply for job Route: /:username/jobs/:id
+  static async applyToJob(username, jobId) {
+    let res = await this.request(`${username}/jobs/${jobId}`);
+    return res.data;
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)

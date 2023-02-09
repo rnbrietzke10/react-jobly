@@ -33,12 +33,6 @@ class JoblyApi {
   }
 
   // Individual API routes
-  /** Signup user */
-  static async signup(userData) {
-    let res = await this.request('/register', userData, 'post');
-    // Store user data in localStorage
-    console.log(res);
-  }
 
   /** Get all companies */
   static async getCompanies() {
@@ -68,11 +62,17 @@ class JoblyApi {
     let res = await this.request(`${location}?name=${searchTerm}`);
     return res.companies;
   }
-
-  static async addUser(handle, userData) {
-    let res = await this.request(`companies/${handle}`, userData, 'post');
+  // Signup user
+  static async createUser(userData) {
+    let res = await this.request(`auth/register`, userData, 'post');
     console.log(res);
-    return res.user;
+    return res.token;
+  }
+
+  static async loginUser(userData) {
+    let res = await this.request('auth/token', userData, 'post');
+    console.log(res);
+    return res.token;
   }
 
   // Apply for job Route: /:username/jobs/:id
@@ -83,9 +83,9 @@ class JoblyApi {
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
-  'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
-  'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
+// JoblyApi.token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
+//   'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
+//   'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
 
 export default JoblyApi;

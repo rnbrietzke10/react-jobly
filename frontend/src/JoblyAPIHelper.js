@@ -59,6 +59,16 @@ class JoblyApi {
     return res.company;
   }
 
+  // Endpoint is whether it is a Job or Company
+  static async getSearchResults(searchTerm, location) {
+    if (location === 'jobs') {
+      let res = await this.request(`${location}?title=${searchTerm}`);
+      return res.jobs;
+    }
+    let res = await this.request(`${location}?name=${searchTerm}`);
+    return res.companies;
+  }
+
   static async addUser(handle, userData) {
     let res = await this.request(`companies/${handle}`, userData, 'post');
     console.log(res);

@@ -5,10 +5,10 @@ import './Company.css';
 
 const Company = ({ company }) => {
   return (
-    <div className="card__container">
-      <div className="Company_info">
+    <div className='card__container'>
+      <div className='Company_info'>
         <Link to={`/companies/${company.handle}`}>{company.name}</Link>
-        <p className="Company_info__description">{company.description}</p>
+        <p className='Company_info__description'>{company.description}</p>
       </div>
       <div>
         {company.logoUrl ? (

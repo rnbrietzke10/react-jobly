@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './JobsList.css';
 import Job from '../Job/Job';
 import SearchBox from '../SearchBox/SearchBox';
 import JoblyApi from '../../JoblyAPIHelper';
 const JobsList = () => {
-  const INITIAL_STATE = [
-    {
-      title: 'Manager',
-      companyName: 'Apple',
-      salary: '$56,000',
-      equity: 0.1,
-    },
-    {
-      title: 'Assistant Manager',
-      companyName: 'Apple',
-      salary: '$36,000',
-    },
-  ];
+  const locationInfo = useLocation();
+  const location = locationInfo.pathname.slice(1);
 
-  const [jobs, setJobs] = useState(INITIAL_STATE);
+  const [jobs, setJobs] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   useEffect(() => {
     async function getAlljobs() {
@@ -27,12 +17,23 @@ const JobsList = () => {
     }
     getAlljobs();
   }, []);
+
+  useEffect(() => {
+    async function getFilteredJobs() {
+      setJobs(searchResults);
+    }
+    getFilteredJobs();
+  }, [searchResults]);
   return (
-    <div className="Jobs__wrapper outer-container">
-      <SearchBox setSearchTerm={setSearchResults} items={jobs} />
-      <div className="Jobs__container">
-        {jobs.map((job) => (
-          <Job job={job} />
+    <div className='Jobs__wrapper outer-container'>
+      <SearchBox
+        setSearchResults={setSearchResults}
+        items={jobs}
+        location={location}
+      />
+      <div className='Jobs__container'>
+        {jobs.map(job => (
+          <Job key={job.id} job={job} />
         ))}
       </div>
     </div>

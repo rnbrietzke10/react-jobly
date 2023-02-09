@@ -7,7 +7,13 @@
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
+
   padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
 }
 
 .nav__site-title {

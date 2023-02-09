@@ -4,34 +4,32 @@ import './NavBar.css';
 const NavBar = () => {
   const isLoggedIn = true;
   return (
-    <div className="nav">
-      <Link to="/" className="nav__site-title">
+    <div className='nav'>
+      <Link to='/' className='nav__site-title'>
         Jobly
       </Link>
       <ul>
-        {/* {isLoggedIn ?  <CustomLink to="/login">Login</CustomLink > <CustomLink to="/logout">Logout</CustomLink>: <CustomLink to="/companies">Comapnies</CustomLink> <CustomLink to="/jobs">Jobs</CustomLink> <CustomLink to="/logout">Logout</CustomLink>} */}
-
         {isLoggedIn ? (
           <>
-            <CustomLink key="companies" to="/companies">
+            <CustomLink key='companies' to='/companies'>
               Comapnies
             </CustomLink>
-            <CustomLink keys="jobs" to="/jobs">
+            <CustomLink key='jobs' to='/jobs'>
               Jobs
             </CustomLink>
-            <CustomLink keys="profile" to="/profile">
+            <CustomLink key='profile' to='/profile'>
               Profile
             </CustomLink>
-            <CustomLink keys="logout" to="/logout">
+            <CustomLink key='logout' to='/logout'>
               Logout
             </CustomLink>
           </>
         ) : (
           <>
-            <CustomLink keys="signup" to="/signup">
+            <CustomLink key='signup' to='/signup'>
               Signup
             </CustomLink>
-            <CustomLink keys="login" to="/login">
+            <CustomLink key='login' to='/login'>
               Login
             </CustomLink>
           </>

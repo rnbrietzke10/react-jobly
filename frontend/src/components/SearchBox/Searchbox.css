@@ -1,10 +1,13 @@
 .SearchBox__form {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .btn__search {
   color: #fff;
   background-color: #a352ee;
+  font-size: 1rem;
+  height: 40px;
+  margin-left: 20px;
 }

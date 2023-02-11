@@ -80,6 +80,8 @@ class JoblyApi {
     let res = await this.request(`${username}/jobs/${jobId}`);
     return res.data;
   }
+
+  static async logoutUser() {}
 }
 
 // for now, put token ("testuser" / "password" on class)

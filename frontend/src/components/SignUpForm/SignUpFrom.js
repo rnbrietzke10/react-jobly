@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage from '../../hooks/useLocalStorage';
+
 import JoblyApi from '../../JoblyAPIHelper';
+import { UserContext } from '../../context/UserContext';
+
 import '../styles/forms.css';
 import './SignUpForm.css';
 
@@ -14,8 +16,10 @@ const SignUpFrom = () => {
     email: '',
     password: '',
   };
+
+  const { setCurrentUser } = useContext(UserContext);
   const [itemData, setItemData] = useState(INITIAL_STATE);
-  const [userData, setUserData] = useLocalStorage();
+
   const handleChange = e => {
     const { name, value } = e.target;
     setItemData(data => ({ ...data, [name]: value }));
@@ -33,7 +37,12 @@ const SignUpFrom = () => {
       async function registerUser() {
         const tokenValue = await JoblyApi.createUser(itemData);
         console.log('TokenValue: ', tokenValue);
-        setUserData('token', tokenValue);
+
+        let { password, ...user } = itemData;
+        setCurrentUser(user);
+        console.log(user);
+        localStorage.setItem('token', JSON.stringify(tokenValue));
+        localStorage.setItem('user', JSON.stringify(user));
         navigate('/');
       }
       registerUser();

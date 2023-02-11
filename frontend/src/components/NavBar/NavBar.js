@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+
+import { UserContext } from '../../context/UserContext';
+import JoblyApi from '../../JoblyAPIHelper';
+
 import './NavBar.css';
+
 const NavBar = () => {
-  const isLoggedIn = true;
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const logoutHandler = async () => {
+    await JoblyApi.logoutUser();
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setCurrentUser(null);
+  };
+
   return (
     <div className='nav'>
       <Link to='/' className='nav__site-title'>
         Jobly
       </Link>
       <ul>
-        {isLoggedIn ? (
+        {true ? (
           <>
             <CustomLink key='companies' to='/companies'>
               Comapnies
@@ -20,9 +33,14 @@ const NavBar = () => {
             <CustomLink key='profile' to='/profile'>
               Profile
             </CustomLink>
-            <CustomLink key='logout' to='/logout'>
+            <li
+              key='logout'
+              className='nav__link'
+              id='logout'
+              onClick={logoutHandler}
+            >
               Logout
-            </CustomLink>
+            </li>
           </>
         ) : (
           <>
@@ -42,8 +60,9 @@ const NavBar = () => {
 const CustomLink = ({ to, children, ...props }) => {
   const resolvedPath = useResolvedPath(to);
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+  const activeClass = isActive ? 'active' : '';
   return (
-    <li className={isActive ? 'active' : ''}>
+    <li className={`nav__link ${activeClass}`}>
       <Link to={to} {...props}>
         {children}
       </Link>

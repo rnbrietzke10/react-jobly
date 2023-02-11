@@ -1,26 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import { UserContext } from '../../context/UserContext';
+
 import './Home.css';
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { currentUser } = useContext(UserContext);
 
-  const firstName = 'Sharon';
-  const signupUser = () => {};
-  const loginUser = () => {};
   return (
     <main className='Home__container'>
       <h2 className='Home__title'>Jobly</h2>
 
-      {isLoggedIn ? (
-        <h2>Welcome Back {firstName}</h2>
+      {currentUser ? (
+        <h2>Welcome Back {currentUser.username}</h2>
       ) : (
         <>
           <p>Find your next career!</p>{' '}
           <div className='Home__btn-container'>
-            <Link to='/signup' className='btn Home__btn' onClick={signupUser}>
+            <Link to='/signup' className='btn Home__btn'>
               Sign Up
             </Link>
-            <Link to='/login' className='btn Home__btn' onClick={loginUser}>
+            <Link to='/login' className='btn Home__btn'>
               Login
             </Link>
           </div>

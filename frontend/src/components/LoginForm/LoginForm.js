@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../../context/UserContext';
+import JoblyApi from '../../JoblyAPIHelper';
 
 import '../styles/forms.css';
 const LoginForm = () => {
   const INITIAL_STATE = {
-    id: '',
-    name: '',
+    username: null,
+    password: null,
   };
-
+  const navigate = useNavigate();
   const { setCurrentUser } = useContext(UserContext);
 
   const [itemData, setItemData] = useState(INITIAL_STATE);
@@ -22,8 +24,14 @@ const LoginForm = () => {
     const allDataEntered = itemData.username && itemData.password;
     if (allDataEntered) {
       console.log(itemData);
+      async function login(loginInfo) {
+        const { allUserInfo, token } = await JoblyApi.loginUser(loginInfo);
+      }
 
+      login(itemData);
+      setCurrentUser(itemData);
       setItemData(INITIAL_STATE);
+      navigate('/');
     } else {
       alert('Please enter all data');
     }

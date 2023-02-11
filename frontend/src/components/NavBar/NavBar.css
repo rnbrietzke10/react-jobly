@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
+#logout span {
+  font-size: 0.75rem;
+  margin-left: 3px;
+}
 .nav li.active {
   background-color: #ac64f0;
   padding: 5px;

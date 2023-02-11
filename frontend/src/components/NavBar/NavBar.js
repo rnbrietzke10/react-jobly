@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../../context/UserContext';
 import JoblyApi from '../../JoblyAPIHelper';
@@ -8,12 +8,13 @@ import './NavBar.css';
 
 const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const logoutHandler = async () => {
     await JoblyApi.logoutUser();
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setCurrentUser(null);
+    navigate('/');
   };
 
   return (
@@ -22,7 +23,7 @@ const NavBar = () => {
         Jobly
       </Link>
       <ul>
-        {true ? (
+        {currentUser ? (
           <>
             <CustomLink key='companies' to='/companies'>
               Comapnies
@@ -39,7 +40,9 @@ const NavBar = () => {
               id='logout'
               onClick={logoutHandler}
             >
-              Logout
+              {currentUser.username}
+
+              <span> (Logout)</span>
             </li>
           </>
         ) : (

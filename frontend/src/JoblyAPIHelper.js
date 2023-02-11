@@ -69,10 +69,14 @@ class JoblyApi {
     return res.token;
   }
 
+  // login user
   static async loginUser(userData) {
     let res = await this.request('auth/token', userData, 'post');
-    console.log(res);
-    return res.token;
+    let { token } = res;
+    let allUserInfo = await this.request(`users/${userData.username}`, token);
+    console.log('All User Data: ', allUserInfo);
+
+    return { allUserInfo, token };
   }
 
   // Apply for job Route: /:username/jobs/:id

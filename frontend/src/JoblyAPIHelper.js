@@ -20,7 +20,7 @@ class JoblyApi {
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = { Authorization: `Bearer ${JoblyApi.token}` };
+    const headers = { Authorization: `Bearer ${this.token}` };
     const params = method === 'get' ? data : {};
 
     try {
@@ -72,11 +72,13 @@ class JoblyApi {
   // login user
   static async loginUser(userData) {
     let res = await this.request('auth/token', userData, 'post');
-    let { token } = res;
-    let allUserInfo = await this.request(`users/${userData.username}`, token);
-    console.log('All User Data: ', allUserInfo);
+    this.token = res.token;
+    let allUserInfo = await this.request(`users/${userData.username}`);
+    localStorage.setItem('user', JSON.stringify(allUserInfo.user));
+    localStorage.setItem('token', this.token);
+    console.log('All User Data: ', allUserInfo.user);
 
-    return { allUserInfo, token };
+    return { allUserInfo, token: this.token };
   }
 
   // Apply for job Route: /:username/jobs/:id
@@ -84,8 +86,6 @@ class JoblyApi {
     let res = await this.request(`${username}/jobs/${jobId}`);
     return res.data;
   }
-
-  static async logoutUser() {}
 }
 
 // for now, put token ("testuser" / "password" on class)

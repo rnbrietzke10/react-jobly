@@ -11,7 +11,7 @@ const LoginForm = () => {
     password: null,
   };
   const navigate = useNavigate();
-  const { setCurrentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const [itemData, setItemData] = useState(INITIAL_STATE);
   const handleChange = e => {
@@ -23,13 +23,14 @@ const LoginForm = () => {
     e.preventDefault();
     const allDataEntered = itemData.username && itemData.password;
     if (allDataEntered) {
-      console.log(itemData);
       async function login(loginInfo) {
-        const { allUserInfo, token } = await JoblyApi.loginUser(loginInfo);
+        const { allUserInfo } = await JoblyApi.loginUser(loginInfo);
+        console.log(allUserInfo);
+        await setCurrentUser(allUserInfo.user);
       }
 
       login(itemData);
-      setCurrentUser(itemData);
+
       setItemData(INITIAL_STATE);
       navigate('/');
     } else {

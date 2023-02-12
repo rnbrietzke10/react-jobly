@@ -10,9 +10,8 @@ const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const logoutHandler = async () => {
-    await JoblyApi.logoutUser();
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    await localStorage.removeItem('user');
+    await localStorage.removeItem('token');
     setCurrentUser(null);
     navigate('/');
   };

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './CompaniesList.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBox from '../SearchBox/SearchBox';
 import JoblyApi from '../../JoblyAPIHelper';
 import Company from '../Company/Company';
 
 const CompaniesList = () => {
+  const navigate = useNavigate();
+  if (!localStorage.getItem('token')) navigate('/');
   const locationInfo = useLocation();
   const location = locationInfo.pathname.slice(1);
   console.log(location);
@@ -25,15 +27,15 @@ const CompaniesList = () => {
     getFilteredCompanies();
   }, [searchResults]);
   return (
-    <div className='CompanyList_wrapper outer-container'>
+    <div className="CompanyList_wrapper outer-container">
       <SearchBox
         setSearchResults={setSearchResults}
         items={companies}
         location={location}
       />
-      <div className='CompanyList_container'>
+      <div className="CompanyList_container">
         {
-          /* map over jobs or companies */ companies.map(company => {
+          /* map over jobs or companies */ companies.map((company) => {
             return <Company key={company.handle} company={company} />;
           })
         }

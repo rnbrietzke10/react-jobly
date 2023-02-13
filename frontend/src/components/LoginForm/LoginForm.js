@@ -11,21 +11,20 @@ const LoginForm = () => {
     password: null,
   };
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const [itemData, setItemData] = useState(INITIAL_STATE);
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setItemData(data => ({ ...data, [name]: value }));
+    setItemData((data) => ({ ...data, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const allDataEntered = itemData.username && itemData.password;
     if (allDataEntered) {
       async function login(loginInfo) {
         const { allUserInfo } = await JoblyApi.loginUser(loginInfo);
-        console.log(allUserInfo);
         await setCurrentUser(allUserInfo.user);
       }
 
@@ -38,37 +37,37 @@ const LoginForm = () => {
     }
   };
   return (
-    <div className='wrapper outer-container '>
-      <div className='form-container'>
+    <div className="wrapper outer-container ">
+      <div className="form-container">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className='form-input-container'>
-            <label htmlFor='username'>Username:</label>
+          <div className="form-input-container">
+            <label htmlFor="username">Username:</label>
             <input
-              id='username'
-              type='text'
-              name='username'
+              id="username"
+              type="text"
+              name="username"
               value={itemData.itemName}
-              placeholder='Enter your username'
-              className='form-input'
+              placeholder="Enter your username"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
-          <div className='form-input-container'>
-            <label htmlFor='password'>Password:</label>
+          <div className="form-input-container">
+            <label htmlFor="password">Password:</label>
             <input
-              id='password'
-              type='password'
-              name='password'
-              autoComplete='on'
+              id="password"
+              type="password"
+              name="password"
+              autoComplete="on"
               value={itemData.description}
-              placeholder='Enter your password'
-              className='form-input'
+              placeholder="Enter your password"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
 
-          <button className='btn submit-btn'>Login</button>
+          <button className="btn submit-btn">Login</button>
         </form>
       </div>
     </div>

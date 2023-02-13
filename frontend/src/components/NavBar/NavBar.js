@@ -1,55 +1,51 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
-
-import { UserContext } from '../../context/UserContext';
-import JoblyApi from '../../JoblyAPIHelper';
 
 import './NavBar.css';
 
 const NavBar = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
   const logoutHandler = async () => {
     await localStorage.removeItem('user');
     await localStorage.removeItem('token');
-    setCurrentUser(null);
     navigate('/');
   };
 
   return (
-    <div className='nav'>
-      <Link to='/' className='nav__site-title'>
+    <div className="nav">
+      <Link to="/" className="nav__site-title">
         Jobly
       </Link>
       <ul>
-        {currentUser ? (
+        {user ? (
           <>
-            <CustomLink key='companies' to='/companies'>
+            <CustomLink key="companies" to="/companies">
               Comapnies
             </CustomLink>
-            <CustomLink key='jobs' to='/jobs'>
+            <CustomLink key="jobs" to="/jobs">
               Jobs
             </CustomLink>
-            <CustomLink key='profile' to='/profile'>
+            <CustomLink key="profile" to="/profile">
               Profile
             </CustomLink>
             <li
-              key='logout'
-              className='nav__link'
-              id='logout'
+              key="logout"
+              className="nav__link"
+              id="logout"
               onClick={logoutHandler}
             >
-              {currentUser.username}
+              {user.username}
 
               <span> (Logout)</span>
             </li>
           </>
         ) : (
           <>
-            <CustomLink key='signup' to='/signup'>
+            <CustomLink key="signup" to="/signup">
               Signup
             </CustomLink>
-            <CustomLink key='login' to='/login'>
+            <CustomLink key="login" to="/login">
               Login
             </CustomLink>
           </>

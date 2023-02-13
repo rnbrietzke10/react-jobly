@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import JoblyApi from '../../JoblyAPIHelper';
-import { UserContext } from '../../context/UserContext';
 
 import '../styles/forms.css';
 import './SignUpForm.css';
@@ -17,15 +16,14 @@ const SignUpFrom = () => {
     password: '',
   };
 
-  const { setCurrentUser } = useContext(UserContext);
   const [itemData, setItemData] = useState(INITIAL_STATE);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setItemData(data => ({ ...data, [name]: value }));
+    setItemData((data) => ({ ...data, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const allDataEntered =
       itemData.firstName &&
@@ -36,11 +34,9 @@ const SignUpFrom = () => {
     if (allDataEntered) {
       async function registerUser() {
         const tokenValue = await JoblyApi.createUser(itemData);
-        console.log('TokenValue: ', tokenValue);
 
         let { password, ...user } = itemData;
-        setCurrentUser(user);
-        console.log(user);
+
         localStorage.setItem('token', JSON.stringify(tokenValue));
         localStorage.setItem('user', JSON.stringify(user));
         navigate('/');
@@ -51,72 +47,72 @@ const SignUpFrom = () => {
     }
   };
   return (
-    <div className='wrapper outer-container '>
-      <div className='form-container'>
+    <div className="wrapper outer-container ">
+      <div className="form-container">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className='form-input-container'>
-            <label htmlFor='username'>Username:</label>
+          <div className="form-input-container">
+            <label htmlFor="username">Username:</label>
             <input
-              id='username'
-              type='text'
-              name='username'
+              id="username"
+              type="text"
+              name="username"
               value={itemData.itemName}
-              placeholder='Enter your username'
-              className='form-input'
+              placeholder="Enter your username"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
-          <div className='form-input-container'>
-            <label htmlFor='firstName'>First Name:</label>
+          <div className="form-input-container">
+            <label htmlFor="firstName">First Name:</label>
             <input
-              id='firstName'
-              type='text'
-              name='firstName'
+              id="firstName"
+              type="text"
+              name="firstName"
               value={itemData.firstName}
-              placeholder='Enter your First Name'
-              className='form-input'
+              placeholder="Enter your First Name"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
-          <div className='form-input-container'>
-            <label htmlFor='lastName'>Last Name:</label>
+          <div className="form-input-container">
+            <label htmlFor="lastName">Last Name:</label>
             <input
-              id='lastName'
-              type='text'
-              name='lastName'
+              id="lastName"
+              type="text"
+              name="lastName"
               value={itemData.lastName}
-              placeholder='Enter your Last Name'
-              className='form-input'
+              placeholder="Enter your Last Name"
+              className="form-input"
               onChange={handleChange}
             />
           </div>{' '}
-          <div className='form-input-container'>
-            <label htmlFor='email'>Email:</label>
+          <div className="form-input-container">
+            <label htmlFor="email">Email:</label>
             <input
-              id='email'
-              type='email'
-              name='email'
+              id="email"
+              type="email"
+              name="email"
               value={itemData.email}
-              placeholder='Enter your email'
-              className='form-input'
+              placeholder="Enter your email"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
-          <div className='form-input-container'>
-            <label htmlFor='password'>Password:</label>
+          <div className="form-input-container">
+            <label htmlFor="password">Password:</label>
             <input
-              id='password'
-              type='password'
-              name='password'
+              id="password"
+              type="password"
+              name="password"
               value={itemData.password}
-              autoComplete='on'
-              placeholder='Enter your password'
-              className='form-input'
+              autoComplete="on"
+              placeholder="Enter your password"
+              className="form-input"
               onChange={handleChange}
             />
           </div>
-          <button className='btn submit-btn'>Login</button>
+          <button className="btn submit-btn">Login</button>
         </form>
       </div>
     </div>

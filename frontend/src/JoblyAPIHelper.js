@@ -89,9 +89,18 @@ class JoblyApi {
     return res.user;
   }
   // Apply for job Route: /:username/jobs/:id
-  static async applyToJob(username, jobId) {
-    let res = await this.request(`${username}/jobs/${jobId}`);
-    return res.data;
+  static async applyToJob(username, jobId, token) {
+    this.token = token;
+
+    let res = await this.request(
+      `users/${username}/jobs/${jobId}`,
+      { username, jobId },
+      'post'
+    );
+    let allUserInfo = await this.request(`users/${username}`);
+
+    console.log(res);
+    return allUserInfo;
   }
 }
 

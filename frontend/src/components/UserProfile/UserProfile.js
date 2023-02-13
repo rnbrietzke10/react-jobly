@@ -1,12 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../../context/UserContext';
 import JoblyApi from '../../JoblyAPIHelper';
 
 import './UserProfile.css';
 const UserProfile = () => {
-  const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
   const INITIAL_STATE = JSON.parse(localStorage.getItem('user'));
   const [itemData, setItemData] = useState(INITIAL_STATE);
@@ -26,7 +24,6 @@ const UserProfile = () => {
       alert('Please enter all information');
     }
     async function updateData() {
-      // const { username, ...updatedData } = itemData;
       const token = await localStorage.getItem('token');
       const updatedInfo = {
         firstName: itemData.firstName,
@@ -39,7 +36,7 @@ const UserProfile = () => {
         itemData.username,
         token
       );
-      await setCurrentUser(user);
+
       localStorage.setItem('user', JSON.stringify(user));
     }
     updateData();

@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../../context/UserContext';
 import JoblyApi from '../../JoblyAPIHelper';
@@ -6,6 +7,7 @@ import JoblyApi from '../../JoblyAPIHelper';
 import './UserProfile.css';
 const UserProfile = () => {
   const { setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const INITIAL_STATE = JSON.parse(localStorage.getItem('user'));
   const [itemData, setItemData] = useState(INITIAL_STATE);
   const handleChange = (e) => {
@@ -38,9 +40,10 @@ const UserProfile = () => {
         token
       );
       await setCurrentUser(user);
-      JSON.stringify(localStorage.setItem('user', user));
+      localStorage.setItem('user', JSON.stringify(user));
     }
     updateData();
+    navigate('/');
   };
   return (
     <div className="wrapper outer-container ">

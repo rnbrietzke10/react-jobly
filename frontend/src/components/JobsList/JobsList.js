@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './JobsList.css';
 import Job from '../Job/Job';
 import SearchBox from '../SearchBox/SearchBox';
 import JoblyApi from '../../JoblyAPIHelper';
 const JobsList = () => {
+  const navigate = useNavigate();
+  if (!localStorage.getItem('token')) navigate('/');
   const locationInfo = useLocation();
   const location = locationInfo.pathname.slice(1);
 
@@ -25,14 +27,14 @@ const JobsList = () => {
     getFilteredJobs();
   }, [searchResults]);
   return (
-    <div className='Jobs__wrapper outer-container'>
+    <div className="Jobs__wrapper outer-container">
       <SearchBox
         setSearchResults={setSearchResults}
         items={jobs}
         location={location}
       />
-      <div className='Jobs__container'>
-        {jobs.map(job => (
+      <div className="Jobs__container">
+        {jobs.map((job) => (
           <Job key={job.id} job={job} />
         ))}
       </div>

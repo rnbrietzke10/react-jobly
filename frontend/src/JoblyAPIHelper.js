@@ -83,10 +83,9 @@ class JoblyApi {
 
   // Update User
   static async updateUser(userData, username, token) {
-    console.log('USERDATA: ', userData);
-    // /:username
     this.token = token;
     let res = await this.request(`users/${username}`, userData, 'patch');
+    console.log('UpdateUser res: ', res);
     return res.user;
   }
   // Apply for job Route: /:username/jobs/:id

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './Job.css';
 
 const Job = ({ job }) => {
